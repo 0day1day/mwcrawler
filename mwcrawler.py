@@ -17,9 +17,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Requirements:
-# - BeautifulSoup 3.0.8
+# - BeautifulSoup 4
 
-from BeautifulSoup import BeautifulSoup as bs
+from bs4 import BeautifulSoup as bs
 import sys
 import hashlib
 import re
@@ -103,20 +103,21 @@ def decisor(url):
 			file.close
 			print "-- Saved file type %s with md5: %s" % (filetype,md5)
 
+# Process MalwareDomainList URLs
+#
 def malwaredl(soup):
 	print "- Fetching from Malware Domain List"
-	mdl=[]
-	for row in soup('description'):
-		mdl.append(row)
-	del mdl[0]
 	mdl_sites=[]
-	for row in mdl:
-		site = re.sub('&amp;','&',str(row).split()[1]).replace(',','')
-		if site == '-':
-			mdl_sites.append(re.sub('&amp;','&',str(row).split()[4]).replace(',',''))
-		else:
-			mdl_sites.append(site)
-	print "-- Found %s urls" % len(mdl)
+	
+	for i in soup.find_all('item'):
+		site_url = (i.description.string).split()[1].replace(',','')
+		
+		if site_url == '-':
+			site_url = (i.description.string).split()[4].replace(',','')
+		
+		mdl_sites.append(site_url)
+	
+	print "-- Found %s urls" % len(mdl_sites)
 	for row in mdl_sites:
 		decisor(row)
 
