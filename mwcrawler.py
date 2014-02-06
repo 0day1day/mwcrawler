@@ -232,10 +232,10 @@ if __name__ == "__main__":
 
     try:
         malwarebl(parse('http://www.malwareblacklist.com/mbl.xml'))
-    except
-    print "[ERROR] Unexpected error processing Malware Black List"
+    except:
+        print "[ERROR] Unexpected error processing Malware Black List"
 
-try:
-    sacour(parse('http://www.sacour.cn/showmal.asp?month=%d&year=%d' % (now.month, now.year)))
-except:
-    print "[ERROR] Unexpected error processing Sacour List"
+    try:
+        sacour(parse('http://www.sacour.cn/showmal.asp?month=%d&year=%d' % (now.month, now.year)))
+    except:
+        print "[ERROR] Unexpected error processing Sacour List"
