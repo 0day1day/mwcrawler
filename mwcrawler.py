@@ -144,7 +144,7 @@ def vxvault(soup):
 #
 # Modified for better performance and clarity ------------------------------------------------------------------
 def malc0de(soup):
-    print "[+] Fetching from Malware Domain List"
+    print "[+] Fetching from MalC0de List"
     mlc_sites = []
     for i in soup.find_all('item'):
         site_url = "http://" + re.sub('&amp;', '&', i.description.string.split()[1]).replace(',', '')
