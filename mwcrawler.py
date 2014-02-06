@@ -107,7 +107,7 @@ def decisor(url):
             file = open(fpath, 'wb')
             file.write(url_dl)
             file.close
-            print "-- Saved file type %s with md5: %s" % (filetype, md5)
+            print "\t\t [*] Saved file type %s with md5: %s" % (filetype, md5)
 
 # Process links from MalwareDomainList
 #
