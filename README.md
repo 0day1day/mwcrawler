@@ -1,26 +1,28 @@
-mwcrawler
-=========
+mwcrawler .09
+=============
 
 mwcrawler is a simple python script that parses malicious url lists from well 
 known websites (i.e. MDL, Malc0de) in order to automatically download
 the malicious code. It can be used to populate malware repositories or zoos.
 
+The latest release of mwcrawler is maintained by and updated Francisco Donoso. The original author is Richardo Diaz:
+https://github.com/0day1day/mwcrawler
+
 Currently the script parses the following sources:
-- NovCon Minotaur:
-	http://minotauranalysis.com/malwarelist-urls.aspx
 - Malware Domain List:
 	http://www.malwaredomainlist.com/hostslist/mdl.xml
 - VX Vault:
 	http://vxvault.siri-urz.net/URL_List.php
 - Malc0de:
 	http://malc0de.com/rss
-- Malware Black List:
-	http://www.malwareblacklist.com/mbl.xml
-- Sacour.cn:
-	http://www.sacour.cn
+- ThreatGlass:
+	http://threatglass.com
+- CleanMX:
+	http://support.clean-mx.de/clean-mx/viruses
+- Zeus Tracker:
+	https://zeustracker.abuse.ch
 
-The downloaded content is stored in /opt/malware/unsorted/ by default, so you 
-need to create this folder first, or change the source code otherwise.
+The downloaded content is stored in /opt/malware/unsorted/ by default. 
 Sub-folders will be created, based on the magic numbers of the downloaded
 content (i.e. PE32, PDF, ZIP). For the sake of simplicity note that the script
 splits the file description string and only use the first 'token'.
@@ -36,17 +38,30 @@ html code for low interaction analysis.
 
 Requirements:
 
-- BeautifulSoup 3.0.8 (later versions seem to have problems parsing html):
+- BeautifulSoup 
 	http://www.crummy.com/software/BeautifulSoup/
 
+- Python Magic
+	https://github.com/ahupp/python-magic
 
 Usage:
 
-$ python mwcrawler.py
+```$ python mwcrawler.py```
 
-Use '-t' for thug analysis
-$ python mwcrawler.py -t
+Use '-t' for thug analysis:
 
+```$ python mwcrawler.py -t```
+
+Use '-d' to enable debug logging:
+
+```$ python mwcrawler.py -t -d```
+
+Use '-o' to attempt to download samples marked as "offline" by Zeus Tracker:
+
+```$ python mwcrawler.py -t -d -o```
+
+
+ 
 
 References:
 
