@@ -125,8 +125,9 @@ def vxvault(soup):
 	vxv=[]
 	for row in soup('pre'):
 		vxv = row.string.split('\r\n')
-	del vxv[:4]
-	del vxv[-1]
+	if (vxv):
+		del vxv[:4]
+		del vxv[-1]
 	print "-- Found %s urls" % len(vxv)
 	for row in vxv:
 		decisor(row)
